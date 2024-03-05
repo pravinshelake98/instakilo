@@ -1,5 +1,11 @@
 from rest_framework import serializers
-import re
+from multiprocessing import Value
+from multiprocessing.managers import ValueProxy
+from optparse import Values
+from typing import ValuesView
+from rest_framework import serializers
+
+import re 
 
 class LoginSerializer(serializers.Serializer):
     """form for the login page
@@ -28,13 +34,6 @@ class RegistrationSerializer(serializers.Serializer):
         if len(value) < 8:
             raise serializers.ValidationError("must contain 8 charater")
 
-
-
-    def validate_email(self, value):
-        """Validate the uniqueness of the email."""
-        if User.objects.filter(email=value).exists():
-            raise serializers.ValidationError("This email address is already registered.")
-        return value
 
     def validate_password(self, value):
         """Validate the password meets certain criteria."""
