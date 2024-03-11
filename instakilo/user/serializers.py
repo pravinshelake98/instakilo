@@ -23,6 +23,9 @@ class RegistrationSerializer(serializers.Serializer):
     mobno = serializers.IntegerField()
     username = serializers.CharField()
     password = serializers.CharField()
+    firstname = serializers.CharField()
+    lastname = serializers.CharField()
+
 
     def validate_user_name(self, value):
         

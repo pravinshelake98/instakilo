@@ -87,9 +87,9 @@ class RegistrationView(APIView):
             try:
                 user_obj = UserModel.objects.create(
                     username=serializer.validated_data.get("username"),
-                    first_name=serializer.validated_data.get("first_name"),
-                    last_name=serializer.validated_data.get("last_name"),
-                    email=serializer.validated_data.get("email_id"),
+                    first_name=serializer.validated_data.get("firstname"),
+                    last_name=serializer.validated_data.get("lastname"),
+                    email=serializer.validated_data.get("emailid"),
                 )
                 user_obj.set_password(serializer.validated_data.get("password"))
                 user_obj.save()
@@ -103,11 +103,11 @@ class RegistrationView(APIView):
                     status=status.HTTP_200_OK,
                 )
 
-            except IntegrityError:
+            except IntegrityError as e:
                 return Response(
                     data={
                         "success": False,
-                        "message": "username or email already exists",
+                        "message": str(e)
                     },
                     status=status.HTTP_400_BAD_REQUEST,
                 )
