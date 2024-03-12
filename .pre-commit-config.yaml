@@ -15,5 +15,6 @@ repos:
       name: pylint
       entry: pylint
       language: system
-      types: [python]
+      types: [python]:
+      exclude: migration
       args: ['--rcfile=.pylintrc']
