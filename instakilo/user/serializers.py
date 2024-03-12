@@ -25,11 +25,13 @@ class RegistrationSerializer(serializers.Serializer):
     password = serializers.CharField()
     firstname = serializers.CharField()
     lastname = serializers.CharField()
+    
+    
 
 
     def validate_user_name(self, value):
         
-        """Validate for the username."""
+        """Validate for the username """
         if value == "":
             raise serializers.ValidationError("user name cannot be empty")
         if not any(character.isdigit() for character in value):
